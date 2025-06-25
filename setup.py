@@ -1,37 +1,14 @@
 #!/usr/bin/env python3
 
-import os
-import re
-from pathlib import Path
-
 from setuptools import find_packages, setup
 
-ROOT_DIR = os.path.dirname(__file__)
-HERE = Path(__file__).parent
-
-version = "0.12.0"
-
-# Optional test requirements
-try:
-    with open("./test-requirements.txt") as test_reqs_txt:
-        test_requirements = list(iter(test_reqs_txt))
-except FileNotFoundError:
-    test_requirements = []
-
-try:
-    long_description = open("README.rst").read()
-except FileNotFoundError:
-    long_description = ""
-
 setup(
-    name="aiosparql",
-    version=version,
+    name="aiosparql",  # ✅ hardcoded
+    version="0.12.0",  # ✅ hardcoded
     description="An asynchronous SPARQL library using aiohttp",
-    long_description=long_description,
     url="https://github.com/aio-libs/aiosparql",
     packages=find_packages(exclude=["tests.*", "tests"]),
     install_requires=["aiohttp>=3.5.0"],
-    tests_require=test_requirements,
     zip_safe=False,
     test_suite="tests",
     python_requires=">=3.6.0",

@@ -1,4 +1,7 @@
-# file: pyproject.toml
+[tool.poetry]
+name = "aiosparql"
+version = "0.12.0"
+
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"

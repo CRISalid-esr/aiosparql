@@ -7,22 +7,25 @@ from pathlib import Path
 from setuptools import find_packages, setup
 
 ROOT_DIR = os.path.dirname(__file__)
-SOURCE_DIR = os.path.join(ROOT_DIR)
 HERE = Path(__file__).parent
 
 txt = (HERE / "aiosparql" / "__init__.py").read_text("utf-8")
-print(txt)
 try:
-    version = re.findall(r'^__version__ = "([^"]+)"\r?$', txt, re.M)[0]
+    version = re.findall(r'^__version__ = ["\']([^"\']+)["\']', txt, re.M)[0]
 except IndexError:
-    raise RuntimeError("Unable to determine version.")
+    version = "0.0.0"  # fallback if version not found
 
-with open("./test-requirements.txt") as test_reqs_txt:
-    test_requirements = list(iter(test_reqs_txt))
+# Optional test requirements
+try:
+    with open("./test-requirements.txt") as test_reqs_txt:
+        test_requirements = list(iter(test_reqs_txt))
+except FileNotFoundError:
+    test_requirements = []
 
-
-long_description = open("README.rst").read()
-
+try:
+    long_description = open("README.rst").read()
+except FileNotFoundError:
+    long_description = ""
 
 setup(
     name="aiosparql",

@@ -9,11 +9,7 @@ from setuptools import find_packages, setup
 ROOT_DIR = os.path.dirname(__file__)
 HERE = Path(__file__).parent
 
-txt = (HERE / "aiosparql" / "__init__.py").read_text("utf-8")
-try:
-    version = re.findall(r'^__version__ = ["\']([^"\']+)["\']', txt, re.M)[0]
-except IndexError:
-    version = "0.0.0"  # fallback if version not found
+version = "0.12.0"
 
 # Optional test requirements
 try:
